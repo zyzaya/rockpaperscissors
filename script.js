@@ -2,7 +2,7 @@ function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.substr(1, str.length).toLowerCase()
 }
 
-function computerPlay() {
+function getComputerPlay() {
     let i = Math.floor(Math.random() * 3)
     switch(i) {
         case 0:
@@ -35,8 +35,26 @@ function getPlayerInput() {
     } while (!validInput)
     return capitalize(input)
 }
-var i = 0;
-// for (i = 0; i < 3; i++) {
-//     console.log(computerPlay())
-//     console.log(getPlayerInput())
-// }
+
+function playRound(player, computer) {
+    let message = ""
+    if (player === computer) {
+        message = "Tie!"
+    } else if ((player === "Rock" && computer === "Scissors") ||
+                (player === "Paper" && computer === "Rock") ||
+                (player === "Scissors" && computer === "Paper")) {
+        message = `You win! ${player} beats ${computer}`
+    } else {
+        message = `You lose! ${computer} beats ${player}`
+    }
+    return message
+}
+
+function startGame() {
+    while (true) {
+        let player = getPlayerInput()
+        let computer = getComputerPlay()
+        console.log(`You played ${player}. Computer played ${computer}.`)
+        console.log(playRound(player, computer))
+    }
+}
