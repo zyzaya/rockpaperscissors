@@ -1,3 +1,6 @@
+let computerScore = 0;
+let playerScore = 0;
+
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.substr(1, str.length).toLowerCase()
 }
@@ -36,25 +39,43 @@ function getPlayerInput() {
     return capitalize(input)
 }
 
-function playRound(player, computer) {
+function setOutput(roundResult, player, computer) {
+    const results = document.querySelector("#results")
+    const score = document.querySelector("#score")
+    let output = `You played ${player}. Computer played ${computer}. `;
+    output += roundResult;
+    results.textContent = output;
+    score.textContent = `Player: ${playerScore}. Computer: ${computerScore}`
+}
+
+function checkForWinner() {
+    if (playerScore >= 5 || computerScore >= 5) {
+        let winner = playerScore >= 5 ? "Player" : "Computer"
+        alert(`${winner} reached 5 first! They win!`)
+        playerScore = 0;
+        computerScore = 0;
+    }
+}
+
+function playRound(e) {
     let message = ""
+    let computer = getComputerPlay()
+    let player = capitalize(this.id);
     if (player === computer) {
         message = "Tie!"
     } else if ((player === "Rock" && computer === "Scissors") ||
                 (player === "Paper" && computer === "Rock") ||
                 (player === "Scissors" && computer === "Paper")) {
         message = `You win! ${player} beats ${computer}`
+        playerScore++;
     } else {
         message = `You lose! ${computer} beats ${player}`
+        computerScore++;
     }
-    return message
+    checkForWinner();
+    setOutput(message, player, computer);
 }
 
-function startGame() {
-    while (true) {
-        let player = getPlayerInput()
-        let computer = getComputerPlay()
-        console.log(`You played ${player}. Computer played ${computer}.`)
-        console.log(playRound(player, computer))
-    }
-}
+const input = document.querySelectorAll('.input');
+input.forEach(button => button.addEventListener('click', playRound));
+
