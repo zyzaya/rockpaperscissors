@@ -14,3 +14,10 @@ h1 {
   width: min-content;
   margin: auto;
 }
+
+#results {
+  margin: 8px 0;
+  text-align: center;
+  white-space: pre-line;
+  line-height: 150%;
+}
