@@ -44,11 +44,13 @@ function getPlayerInput() {
 
 function setOutput(roundResult, player, computer) {
   const results = document.querySelector('#results');
-  const score = document.querySelector('#score');
+  const playerOutput = document.getElementById('playerScore');
+  const computerOutput = document.getElementById('computerScore');
   let output = `You played ${player}.\n Computer played ${computer}.\n`;
   output += roundResult;
   results.textContent = output;
-  score.textContent = `Player: ${playerScore}. Computer: ${computerScore}`;
+  playerOutput.textContent = `Player: ${playerScore}`;
+  computerOutput.textContent = `Computer: ${computerScore}`;
 }
 
 function checkForWinner() {

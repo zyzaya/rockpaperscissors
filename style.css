@@ -1,10 +1,19 @@
+body {
+  background-color: rgb(30, 8, 51);
+}
+
 .container {
-  width: 50%;
+  width: min-content;
   margin: auto;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 6px;
+  background-color: antiquewhite;
 }
 
 h1 {
   text-align: center;
+  white-space: nowrap;
 }
 
 .inputs {
@@ -21,3 +30,8 @@ h1 {
   white-space: pre-line;
   line-height: 150%;
 }
+
+#playerScore {
+  margin-top: 8px;
+}
+
